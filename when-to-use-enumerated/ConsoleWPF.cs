@@ -12,18 +12,22 @@ namespace IVSoftware
         public Console()
         {
             _textBoxBase = this;
+            KeyDown += (object sender, KeyEventArgs e)=>{ OnKeyDown(e); };
         }
+
         private static TextBoxBase _textBoxBase { get; set; }
-        public static void ReadKey()
+        public static async void ReadKey()
         {
             _waiting = true;
-            _textBoxBase.AppendText("Press any key to continue..." + Environment.NewLine);
-            while (_waiting)
+            await Task.Run(() =>
             {
-                Thread.Sleep(0);        // Pump Message Queue
-                Task.Delay(100).Wait();
-            }
-            _textBoxBase.AppendText("Execution has resumed.");
+                while (_waiting)
+                {
+                    Thread.Sleep(0);        // Pump Message Queue
+                    Task.Delay(100).Wait();
+                }
+            });
+            WriteLine("Execution has resumed.");
         }
         public static void WriteLine(object text = null)
         {
@@ -47,7 +51,11 @@ namespace IVSoftware
            KeyEventArgs e
         )
         {
-            if (_waiting) _waiting = false;
+            if (_waiting)
+            {
+                e.Handled = true;
+                _waiting = false;
+            }
         }
         static bool _waiting = false;
         void IConsole.ReadKey()

@@ -48,7 +48,9 @@ namespace wpf_window_ex
             }
 
             // Pause to see output
-            // Console.ReadKey();
+            Console.WriteLine();
+            Console.WriteLine("Press any key to continue..." + Environment.NewLine);
+            Console.ReadKey();
         }
     }
 }
