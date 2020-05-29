@@ -12,10 +12,10 @@ namespace IVSoftware
         public Console()
         {
             _textBoxBase = this;
-            KeyDown += (object sender, KeyEventArgs e)=>{ OnKeyDown(e); };
+            PreviewKeyDown += (object sender, KeyEventArgs e)=>{ OnKeyDown(e); };
         }
 
-        private static TextBoxBase _textBoxBase { get; set; }
+        private static TextBox _textBoxBase { get; set; }
         public static async void ReadKey()
         {
             _waiting = true;
@@ -28,6 +28,10 @@ namespace IVSoftware
             });
             WriteLine("Execution has resumed.");
         }
+        static void GoToEnd()
+        {
+            _textBoxBase.Select(_textBoxBase.Text.Length, 0);
+        }
         public static void WriteLine(object text = null)
         {
             if (text == null)
@@ -38,6 +42,7 @@ namespace IVSoftware
             {
                 _textBoxBase.AppendText(text.ToString() + Environment.NewLine);
             }
+            GoToEnd();
         }
         public static void Write(object text = null)
         {
@@ -45,6 +50,7 @@ namespace IVSoftware
             {
                 _textBoxBase.AppendText(text.ToString());
             }
+            GoToEnd();
         }
         protected override void OnKeyDown(
            KeyEventArgs e
