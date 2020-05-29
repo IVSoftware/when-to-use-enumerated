@@ -15,20 +15,20 @@ namespace wpf_window_ex
             public MyPrioritizedObject(string name, int priority)
             {
                 Name = name;
-                Priority = priority;
+                Level = priority;
             }
-            public int Priority { get; set; }
+            public int Level { get; set; }
             public string Name { get; }
 
             // This gives you fine control over how a list of your object will sort.
             public int CompareTo(MyPrioritizedObject other)
             {
-                return this.Priority.CompareTo(other.Priority);
+                return this.Level.CompareTo(other.Level);
             }
             // This gives you the ability to display the Priority property however you want.
             public override string ToString()
             {
-                return "Priority " + Priority.ToString() + ":" + Name;
+                return "LEVEL " + Level.ToString() + ": " + Name;
             }
         }
 
