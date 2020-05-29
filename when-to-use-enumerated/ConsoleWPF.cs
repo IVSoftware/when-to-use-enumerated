@@ -23,7 +23,6 @@ namespace IVSoftware
             {
                 while (_waiting)
                 {
-                    Thread.Sleep(0);        // Pump Message Queue
                     Task.Delay(100).Wait();
                 }
             });
