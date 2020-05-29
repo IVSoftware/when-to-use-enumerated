@@ -77,5 +77,6 @@ namespace IVSoftware
         void Write(object text = null);
         void WriteLine(object text = null);
         void ReadKey();
+        bool Focus();
     }
 }

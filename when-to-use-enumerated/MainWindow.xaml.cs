@@ -19,6 +19,7 @@ namespace wpf_window_ex
             base.OnHandleCreated(e);
 
             Console.WriteLine("Native window handle has been created.");
+            Console.Focus();
         }
         protected override void OnLoad(RoutedEventArgs e)
         {
