@@ -26,7 +26,7 @@ namespace IVSoftware
                     Task.Delay(100).Wait();
                 }
             });
-            WriteLine("Execution has resumed.");
+            WriteLine("Console simulation has exited.");
         }
         static void GoToEnd()
         {
